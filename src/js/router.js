@@ -1,3 +1,9 @@
-var test = require('./required');
+require('angular');
 
-test('Hello World!')
+var App = angular.module('SocketChat', []);
+
+var fn = function($scope) {
+  $scope.input = '';
+}
+
+App.controller('test', ['$scope', fn]);

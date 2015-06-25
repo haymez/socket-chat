@@ -1,7 +1,9 @@
 head
   link(rel='stylesheet', href='app.css')
   
-body
-  h1 Hello World!
+body(ng-app='SocketChat')
+  div(ng-controller='test')
+    input(ng-model='input')
+    h1 {{input}}
 
   script(src='app.js')
