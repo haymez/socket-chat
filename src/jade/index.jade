@@ -2,8 +2,17 @@ head
   link(rel='stylesheet', href='app.css')
   
 body(ng-app='SocketChat')
-  div(ng-controller='test')
-    input(ng-model='input')
-    h1 {{input}}
-
   script(src='app.js')
+
+  div(ng-controller='ChatController')
+    .login(ng-hide='hasUserName')
+      h1 You need to log in
+      input(ng-model='userName')
+      button(ng-click='setUserName()') Log In
+    .message-board(ng-show='hasUserName')
+      input(type='text', ng-model='chatInput')
+      button(ng-click='sendChat()') Send Message
+      ul
+        li(ng-repeat='message in messages | orderBy:"date":true')
+          {{message.userName}}: {{message.text}}
+
