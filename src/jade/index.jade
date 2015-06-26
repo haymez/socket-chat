@@ -1,18 +1,22 @@
 head
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
   link(rel='stylesheet', href='app.css')
   
 body(ng-app='SocketChat')
   script(src='app.js')
 
-  div(ng-controller='ChatController')
-    .login(ng-hide='hasUserName')
+  div(ng-controller='ChatController', class='container well')
+    .login(, ng-hide='hasUserName')
       h1 You need to log in
-      input(ng-model='userName')
-      button(ng-click='setUserName()') Log In
+      form
+        label(for='userName') User Name
+        input(id='userName', class='form-control', ng-model='userName')
+        button(class='btn btn-success form-control', ng-click='setUserName()') Log In
     .message-board(ng-show='hasUserName')
-      input(type='text', ng-model='chatInput')
-      button(ng-click='sendChat()') Send Message
-      ul
-        li(ng-repeat='message in messages | orderBy:"date":true')
-          {{message.userName}}: {{message.text}}
+      form
+        input(class='form-control', type='text', ng-model='chatInput')
+        button(class='btn btn-success form-control', ng-click='sendChat()') Send Message
+        ul
+          li(ng-repeat='message in messages | orderBy:"date":true')
+            span {{message.userName}}: {{message.text}}
 
